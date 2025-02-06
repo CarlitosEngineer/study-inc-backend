@@ -2,9 +2,9 @@ import os
 
 # 📌 Configuración: Define la ruta del proyecto dinámicamente
 PROYECTO_BASE = os.path.expanduser("~/Documents/Airachnid")  # Ajusta automáticamente la ruta en cualquier equipo
-IGNORAR_CARPETAS = {"node_modules",".git","temp"}  # Carpeta que no se debe escanear
+IGNORAR_CARPETAS = {"node_modules",".git","temp","doc"}  # Carpeta que no se debe escanear
 
-def scan_project_structure(directory, output_file="estructura_proyecto.txt"):
+def scan_project_structure(directory, output_file="project_structure.txt"):
     """
     Escanea todas las carpetas y subcarpetas de un directorio y guarda la estructura en un archivo de texto,
     ignorando carpetas específicas.
