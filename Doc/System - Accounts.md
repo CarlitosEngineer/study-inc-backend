@@ -2,18 +2,26 @@
 
 Para interactuar con la API (agregar, modificar o votar frases), los usuarios deberán contar con una cuenta registrada.  
 
-### 📌 **Estructura de la Base de Datos**  
+### 📌 **Estructura de la Base de Datos Mejorada**  
 
 Se implementará una tabla para almacenar la información de los usuarios registrados, con el siguiente esquema:
 
-| Campo        | Tipo        | Descripción |
-|-------------|------------|------------------------------------------------|
-| `id`        | Entero (PK) | Identificador único del usuario. |
-| `email`     | Texto       | Dirección de correo electrónico del usuario (único). |
-| `password`  | Texto (Hash) | Contraseña en formato seguro (hash). |
-| `username`  | Texto       | Nombre de usuario único. |
-| `created_at` | Timestamp  | Fecha de creación de la cuenta. |
-| `updated_at` | Timestamp  | Fecha de la última actualización de la cuenta. |
+| Campo         | Tipo            | Descripción |
+|--------------|----------------|------------------------------------------------|
+| `id`         | Entero (PK)      | Identificador único del usuario. |
+| `email`      | Texto (Único)    | Dirección de correo electrónico del usuario. |
+| `password`   | Texto (Hash)     | Contraseña en formato seguro (hash). |
+| `username`   | Texto (Único)    | Nombre de usuario único. |
+| `nickname`   | Texto            | Apodo o alias del usuario. |
+| `first_name` | Texto            | Nombre(s) del usuario. |
+| `last_name`  | Texto            | Apellido(s) del usuario. |
+| `gender`     | Texto (ENUM)      | Género del usuario (`Masculino`, `Femenino`, `Otro`). |
+| `birthdate`  | Fecha            | Fecha de nacimiento del usuario. |
+| `country`    | Texto            | País de residencia del usuario. |
+| `phone`      | Texto (Único)    | Número de teléfono móvil del usuario. |
+| `profile_image` | Texto (URL)   | URL de la imagen de perfil del usuario. |
+| `created_at` | Timestamp        | Fecha de creación de la cuenta. |
+| `updated_at` | Timestamp        | Fecha de la última actualización de la cuenta. |
 
 ### 🏷️ **Sistema de Roles de Usuarios**  
 
