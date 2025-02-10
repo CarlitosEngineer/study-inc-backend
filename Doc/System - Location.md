@@ -16,5 +16,3 @@ CREATE TABLE countries (
 - `iso3166_3`: 3-letter ISO 3166-1 alpha-3 code.  
 - `num_code`: 3-digit numeric country code.  
 - `phone_code`: Country dialing code (1 to 4 digits).  
-
-Let me know if you need changes! 🚀

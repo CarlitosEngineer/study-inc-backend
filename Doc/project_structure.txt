@@ -1,0 +1,30 @@
+├── [Airachnid]
+│   ├── .env
+│   ├── .gitignore
+│   ├── index.js
+│   ├── LICENSE
+│   ├── menu.py
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
+│   ├── scan_project.py
+│   ├── [src]
+│   │   ├── [config]
+│   │   │   ├── database.js
+│   │   ├── [database]
+│   │   │   ├── db.sqlite
+│   │   ├── [modules]
+│   │   │   ├── [accounts]
+│   │   │   │   ├── [controllers]
+│   │   │   │   │   ├── accounts.js
+│   │   │   │   ├── [models]
+│   │   │   │   │   ├── accounts.js
+│   │   │   │   ├── [routes]
+│   │   │   │   │   ├── accounts.js
+│   │   │   ├── [location]
+│   │   │   │   ├── [controllers]
+│   │   │   │   │   ├── countries.js
+│   │   │   │   ├── [models]
+│   │   │   │   │   ├── countries.js
+│   │   │   │   ├── [routes]
+│   │   │   │   │   ├── countries.js

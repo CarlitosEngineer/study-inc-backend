@@ -12,7 +12,6 @@ Se implementará una tabla para almacenar la información de los usuarios regist
 | `email`      | Texto (Único)    | Dirección de correo electrónico del usuario. |
 | `password`   | Texto (Hash)     | Contraseña en formato seguro (hash). |
 | `username`   | Texto (Único)    | Nombre de usuario único. |
-| `nickname`   | Texto            | Apodo o alias del usuario. |
 | `first_name` | Texto            | Nombre(s) del usuario. |
 | `last_name`  | Texto            | Apellido(s) del usuario. |
 | `gender`     | Texto (ENUM)      | Género del usuario (`Masculino`, `Femenino`, `Otro`). |

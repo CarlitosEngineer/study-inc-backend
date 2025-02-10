@@ -1,21 +1,24 @@
-// Importar módulos
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-require("dotenv").config();
+const express = require('express');
+const sequelize = require('./src/config/database'); // Conexión a la BD
+const countryRoutes = require('./src/modules/location/routes/countries');
 
-// Configuración del servidor
 const app = express();
-const PORT = process.env.PORT || 5000;
+app.use(express.json()); // Middleware para JSON
 
-// Middlewares
-app.use(cors()); // Permitir peticiones de otros dominios
-app.use(morgan("dev")); // Registrar peticiones en la consola
-app.use(express.json()); // Habilitar el uso de JSON en las peticiones
+// Puerto del servidor
+const PORT = 3000;
 
-// Rutas básicas
-app.get("/", (req, res) => {
-  res.json({ message: "Bienvenido a mi API REST con Express!" });
+// Rutas
+app.use('/countries', countryRoutes);
+
+// Sincronizar BD y forzar actualización (usar `{ force: true }` solo en desarrollo)
+sequelize.sync()
+  .then(() => console.log('✅ Base de datos conectada y sincronizada'))
+  .catch(err => console.error('❌ Error al conectar la base de datos:', err));
+
+// Ruta principal
+app.get('/', (req, res) => {
+  res.send('¡Hola, Express!');
 });
 
 // Importar rutas de la API
@@ -24,5 +27,5 @@ app.get("/", (req, res) => {
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

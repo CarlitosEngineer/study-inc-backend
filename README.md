@@ -2,7 +2,7 @@
 
 # 📜 API de Frases - Backend
 
-Este es un proyecto backend diseñado para crear, almacenar, documentar y editar frases. Puede contener frases famosas y no famosas, incluyendo citas de libros, autores, científicos, películas y más.
+Este es un **proyecto backend** diseñado para **crear, almacenar, documentar y editar frases**. Permite gestionar frases tanto **famosas como inéditas**, incluyendo **citas de libros, autores, científicos, películas y más**. Su objetivo es ofrecer una plataforma flexible para organizar y recuperar frases de manera eficiente.
 
 ## 🚀 Tecnologías Utilizadas
 
