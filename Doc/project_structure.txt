@@ -1,16 +1,16 @@
 ├── [Airachnid]
+│   ├── .env
 │   ├── .gitignore
 │   ├── index.js
 │   ├── LICENSE
+│   ├── menu.py
 │   ├── package-lock.json
 │   ├── package.json
 │   ├── README.md
 │   ├── scan_project.py
 │   ├── [src]
 │   │   ├── [config]
-│   │   │   ├── .env
 │   │   │   ├── database.js
-│   │   │   ├── env.js
 │   │   ├── [database]
 │   │   │   ├── db.sqlite
 │   │   ├── [modules]
@@ -19,12 +19,12 @@
 │   │   │   │   │   ├── accounts.js
 │   │   │   │   ├── [models]
 │   │   │   │   │   ├── accounts.js
-│   │   │   │   ├── [views]
+│   │   │   │   ├── [routes]
 │   │   │   │   │   ├── accounts.js
 │   │   │   ├── [location]
 │   │   │   │   ├── [controllers]
 │   │   │   │   │   ├── countries.js
 │   │   │   │   ├── [models]
 │   │   │   │   │   ├── countries.js
-│   │   │   │   ├── [views]
+│   │   │   │   ├── [routes]
 │   │   │   │   │   ├── countries.js
