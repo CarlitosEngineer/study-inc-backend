@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
 });
 
 // Importar rutas de la API
-const usersRoutes = require("./routes/users.routes");
-app.use("/api/users", usersRoutes);
+//const usersRoutes = require("./routes/users.routes");
+//app.use("/api/users", usersRoutes);
 
 // Iniciar servidor
 app.listen(PORT, () => {
