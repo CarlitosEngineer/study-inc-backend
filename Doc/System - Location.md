@@ -9,7 +9,7 @@ CREATE TABLE countries (
 );
 ```
 
-📌 **Explanation**:  
+📌 **countries**:  
 - `id`: Auto-incremented primary key.  
 - `name`: Country name (unique).  
 - `iso3166_2`: 2-letter ISO 3166-1 alpha-2 code.  
