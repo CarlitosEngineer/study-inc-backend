@@ -4,6 +4,7 @@
 ## Module - Global
 
 ### **Tabla `languages` (Lengauges)**
+Registro de lenguages
 
 | Campo        | Tipo        | Descripción |
 |-------------|------------|-------------------------------------------|
@@ -16,78 +17,156 @@
 | `created_at` | Timestamp | Fecha de creación del registro. |
 | `updated_at` | Timestamp | Fecha de la última actualización. |
 
-### **Tabla `text_directions` (Traducciones de citas)**
+### **Tabla `writing_directions` (Sentido de escritura)**
+en que direccion leer los lenguages
 
 | Campo      | Tipo        | Descripción |
-|-----------|------------|---------------------------------|
-| `id`      | Entero (PK) | Identificador único de la dirección. |
+|-----------|------------|-----------------------------------------|
+| `id`      | Entero (PK) | Identificador único de la dirección de escritura. |
 | `name`    | Texto       | Nombre (`"Left to Right"`, `"Right to Left"`). |
 | `code`    | Texto (3)   | Código (`"LTR"`, `"RTL"`). |
 | `created_at` | Timestamp | Fecha de creación. |
 | `updated_at` | Timestamp | Fecha de actualización. |
 
-## Module - Quotes
+### **Tabla `genders` (Géneros binarios)**
+Registro de generos universal
 
-### **Tabla `quotes` (Citas)**
+| Campo                 | Tipo        | Descripción |
+|----------------------|------------|------------------------------------------------|
+| `id`                | Entero (PK) | Identificador único del género (`1` = Masculino, `0` = Femenino, `NULL` = No especificado). |
+| `slug`              | Texto (ÚNICO) | Nombre en formato de URL (`masculino`, `femenino`, `no-especificado`). |
+| `char_representation` | Texto (1)  | Representación en un solo carácter (`M`, `F`, `N`). |
+
+### **Tabla `gender_translations` (Traducciones de género)**
+Registro de generos por lenguages
+
+| Campo        | Tipo        | Descripción |
+|-------------|------------|------------------------------------------------|
+| `id`        | Entero (PK) | Identificador único de la traducción. |
+| `gender_id` | Entero (FK) | Referencia a `genders.id` (`0`, `1`, o `NULL`). |
+| `language_id` | Entero (FK) | Referencia a `languages.id`. |
+| `name`      | Texto       | Traducción del género en un idioma específico. |
+| `created_at` | Timestamp | Fecha de creación. |
+| `updated_at` | Timestamp | Fecha de actualización. |
+
+### **Tabla `countries` (Países)**
+Almacena información sobre los países según los estándares ISO 3166-1.
+
 | Campo         | Tipo        | Descripción |
 |--------------|------------|------------------------------------------------|
-| `id`         | Entero (PK) | Identificador único de la frase. |
-| `text`       | Texto       | Contenido de la frase en el idioma original. |
-| `year`       | Entero      | Año de creación o referencia de la frase. |
-| `author_id`  | Entero (FK) | Referencia a `authors.id`. |
-| `source_id`  | Entero (FK) | Referencia a `sources.id`. |
-| `languages_id` | Entero (FK) | Referencia a `languages.id`. |
-| `created_at` | Timestamp   | Fecha de creación del registro. |
-| `updated_at` | Timestamp   | Fecha de la última actualización. |
+| `id`         | Entero (PK) | Identificador único del país. |
+| `name`       | Texto (ÚNICO) | Nombre del país. |
+| `iso3166_2`  | Texto (2)  | Código ISO 3166-1 alfa-2. |
+| `iso3166_3`  | Texto (3)  | Código ISO 3166-1 alfa-3. |
+| `num_code`   | Entero (3) | Código numérico de 3 dígitos del país. |
+| `phone_code` | Entero (1-4) | Código de marcación internacional. |
+| `currency_code` | Texto (3) | Código de moneda (`USD`, `EUR`, `MXN`). |
+| `region`     | Texto       | Región geográfica o continente. |
+| `created_at` | Timestamp | Fecha de creación del registro. |
+| `updated_at` | Timestamp | Fecha de la última actualización. |
+
+### **Tabla `statuses` (Estados de Citas)**
+Almacena los diferentes estados posibles de una cita, permitiendo flexibilidad en caso de que se necesiten agregar nuevos estados en el futuro.
+
+| Campo  | Tipo        | Descripción |
+|--------|------------|------------------------------------------------|
+| `id`   | Entero (PK) | Identificador único del estado. |
+| `name` | Texto       | Nombre del estado (Ejemplo: "Pendiente", "Aprobado", "Rechazado"). |
+| `slug` | Texto (ÚNICO) | Versión en texto plano (`pending`, `approved`, `rejected`). |
+| `color_code` | Texto (7) | Código de color HEX (`#FFCC00` para "Pendiente", `#00CC00` para "Aprobado"). |
+| `created_at` | Timestamp  | Fecha de creación del registro. |
+| `updated_at` | Timestamp  | Fecha de la última actualización. |
+
+## Module - Accounts
+
+### **Tabla `account_statuses` (Estados de Cuenta)**
+Esta tabla almacena los diferentes estados posibles de una cuenta.
+
+| Campo  | Tipo        | Descripción |
+|--------|------------|------------------------------------------------|
+| `id`   | Entero (PK) | Identificador único del estado. |
+| `name` | Texto (ÚNICO) | Nombre del estado (`Activa`, `Suspendida`, `Eliminada`). |
+| `slug` | Texto (ÚNICO) | Versión en texto plano (`active`, `suspended`, `deleted`). |
+| `created_at` | Timestamp | Fecha de creación del estado. |
+| `updated_at` | Timestamp | Fecha de la última actualización. |
+
+### **Tabla `accounts` (Identificación única del usuario)**
+Esta tabla almacena el **ID base del usuario** y actúa como referencia para las demás.  
+
+| Campo    | Tipo        | Descripción |
+|---------|------------|------------------------------------------------|
+| `id`    | Entero (PK) | Identificador único del usuario. |
+| `status_id` | Entero (FK) | Referencia a `account_statuses.id`. |
+| `created_at` | Timestamp | Fecha de creación de la cuenta. |
+| `updated_at` | Timestamp | Fecha de la última actualización. |
+
+### **Tabla `account_details` (Datos Personales del Usuario)**
+| Campo         | Tipo        | Descripción |
+|--------------|------------|------------------------------------------------|
+| `account_id` | Entero (FK) | Referencia a `accounts.id`. |
+| `first_name` | Texto       | Nombre(s) del usuario (puede ser NULL si no se proporciona). |
+| `last_name`  | Texto       | Apellido(s) del usuario (puede ser NULL si no se proporciona). |
+| `gender_id`  | Entero (FK) | Referencia a `genders.id` (puede ser NULL). |
+| `birthdate`  | Fecha       | Fecha de nacimiento. |
+| `country_id` | Entero (FK) | Referencia a `countries.id`. |
+
+### **Tabla `account_security` (Datos de Seguridad y Autenticación)**
+| Campo         | Tipo        | Descripción |
+|--------------|------------|------------------------------------------------|
+| `account_id` | Entero (FK) | Referencia a `accounts.id`. |
+| `email`      | Texto (ÚNICO) | Dirección de correo electrónico. |
+| `password_hash` | Texto    | Contraseña en formato hash. |
+| `phone`      | Texto (ÚNICO) | Número de teléfono sin código de país. |
+| `is_verified` | Booleano  | `true` si el correo está verificado, `false` si no. |
+| `is_verified_user` | Booleano | `true` si el usuario ha sido verificado (ejemplo: KYC o manualmente). |
+| `last_login` | Timestamp | Última fecha de inicio de sesión. |
+
+### **Tabla `account_settings` (Configuraciones del Usuario)**
+| Campo         | Tipo        | Descripción |
+|--------------|------------|------------------------------------------------|
+| `account_id` | Entero (FK) | Referencia a `accounts.id`. |
+| `language_id` | Entero (FK) | Referencia a `languages.id`. |
+| `uses_dark_mode` | Booleano | `true` = Modo oscuro, `false` = Modo claro. |
+
+## Module - Quotes
 
 ### **Tabla `categories` (Categorías de citas)**
+
 | Campo  | Tipo        | Descripción |
 |--------|------------|------------------------------------------------|
 | `id`   | Entero (PK) | Identificador único de la categoría. |
 | `name` | Texto       | Nombre de la categoría (Ejemplo: "Motivacional", "Histórica"). |
 
 ### **Tabla `quote_categories` (Relación Cita-Categoría, Many-to-Many)**
+
 | Campo      | Tipo        | Descripción |
 |------------|------------|------------------------------------------------|
 | `id`       | Entero (PK) | Identificador único de la relación. |
 | `quote_id` | Entero (FK) | ID de la cita en la tabla `quotes`. |
 | `category_id` | Entero (FK) | ID de la categoría en la tabla `categories`. |
 
-### **Tabla `quote_translations` (Traducciones de citas)**
-| Campo       | Tipo        | Descripción |
-|------------|------------|------------------------------------------------|
-| `id`       | Entero (PK) | Identificador único de la traducción. |
-| `quote_id` | Entero (FK) | ID de la cita en la tabla `quotes`. |
-| `text`     | Texto       | Texto de la cita traducida. |
-| `language` | Texto (ISO) | Código del idioma (`"es"`, `"en"`, `"fr"`, etc.). |
+---
 
-### **Tabla `sources` (Fuentes de citas)**
-
-| Campo       | Tipo        | Descripción |
-|------------|------------|-----------------------------------------------|
-| `id`       | Entero (PK) | Identificador único de la fuente.            |
-| `name`     | Texto       | Nombre de la fuente (ej. "Hamlet", "Star Wars"). |
-| `type`     | Texto       | Tipo de fuente (ej. "Libro", "Película", "Serie", "Discurso", etc.). |
-| `year`     | Entero      | Año de publicación o lanzamiento (si aplica). |
-| `created_at` | Timestamp | Fecha de creación del registro.              |
-| `updated_at` | Timestamp | Fecha de la última actualización.            |
-
-### **Tabla `authors` (Autores)**
-| Campo         | Tipo        | Descripción |
-|--------------|------------|------------------------------------------------|
-| `id`         | Entero (PK) | Identificador único del autor. |
-| `name`       | Texto       | Nombre completo del autor (ej. "Albert Einstein"). |
-| `birth_year` | Entero      | Año de nacimiento (opcional). |
-| `death_year` | Entero      | Año de fallecimiento (opcional, `NULL` si sigue vivo). |
-| `nationality` | Texto      | Nacionalidad del autor (ej. "Alemán"). |
-| `description` | Texto      | Breve biografía del autor (opcional). |
-| `created_at` | Timestamp   | Fecha de creación del registro. |
-| `updated_at` | Timestamp   | Fecha de la última actualización. |
-
+# Models - FINALIZADOS
 
 ## Module - Global
 
-### 📌 **Estructura de la Base de Datos**
+### **Tabla `languages` (Lengauges)**
+### **Tabla `writing_directions` (Sentido de escritura)**
+### **Tabla `genders` (Géneros binarios)**
+### **Tabla `gender_translations` (Traducciones de género)**
+### **Tabla `countries` (Países)**
+### **Tabla `statuses` (Estados de Citas)**
 
+## Module - Accounts
 
+### **Tabla `account_statuses` (Estados de Cuenta)**
+### **Tabla `accounts` (Identificación única del usuario)**
+### **Tabla `account_details` (Datos Personales del Usuario)**
+### **Tabla `account_security` (Datos de Seguridad y Autenticación)**
+### **Tabla `account_settings` (Configuraciones del Usuario)**
 
+## Module - Quotes
+
+### **Tabla `categories` (Categorías de citas)**
+### **Tabla `quote_categories` (Relación Cita-Categoría, Many-to-Many)**
