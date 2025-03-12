@@ -7,4 +7,10 @@ const sequelize = new Sequelize({
   logging: console.log,
 });
 
+
+
+
 module.exports = sequelize;
+
+
+
