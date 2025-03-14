@@ -1,5 +1,7 @@
  const Account = require('../models/accounts');
  const bcryptjs = require('bcryptjs');
+ const jwt = require('jsonwebtoken');
+ require('dotenv').config(); // Cargar variables de entorno
 
 
  exports.getAll = async(req,res )=> {
@@ -22,6 +24,8 @@
     
     };
 
+
+  /*  
   exports.getLogin = async (req, res) => {
   try {
     let { email, password } = req.body;
@@ -50,6 +54,43 @@
   }
 };
         
+*/
+
+
+exports.getLogin = async (req, res) => {
+  try {
+    let { email, password } = req.body;
+    let busqueda = await Account.findOne({
+      where: { email: email },
+      attributes: ['id', 'password'],
+    });
+
+    if (!busqueda) {
+      return res.status(401).send({ message: 'Error en las credenciales' });
+    }
+
+    let autenticado = await bcryptjs.compare(password, busqueda.password);
+    if (!autenticado) {
+      return res.status(401).send({ message: 'Error en las credenciales' });
+    }
+
+    // Crear el token JWT
+    const token = jwt.sign(
+      { id: busqueda.id, email }, // Payload (datos dentro del token)
+      process.env.SECRET_KEY, // Clave secreta del archivo .env
+      { expiresIn: '1h' } // Expiración del token
+    );
+
+    return res.status(200).send({
+      message: 'Inicio de Sesión Autorizado',
+      redirect: "/",
+      token // Enviar el token al cliente
+    });
+  } catch (error) {
+    console.error('Error during login:', error);
+    return res.status(500).send({ message: 'Error interno del servidor' });
+  }
+};
 
     
 
