@@ -1,10 +1,10 @@
-const express = require('express');
-const connectDB = require('./config/db');
+import express, { json } from 'express';
+import connectDB from './config/db';
 const app = express();
 
 connectDB(); // Conexión a MongoDB
 
-app.use(express.json()); // Middleware para parsear JSON
+app.use(json()); // Middleware para parsear JSON
 
 app.get('/', (req, res) => {
   res.send('API funcionando 🎉');
@@ -13,5 +13,5 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
 
-const userRoutes = require('./routes/userRoutes');
+import userRoutes from './routes/userRoutes';
 app.use('/api', userRoutes);
