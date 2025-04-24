@@ -1,6 +1,6 @@
 # Folders
 node_modules/
-temp/
+# temp/
 
 # Specific Files
 project_structure.txt

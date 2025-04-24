@@ -1,17 +1,18 @@
-import express, { json } from 'express';
+import express from 'express';
 import connectDB from './config/db.js';
+import userRoutes from './src/modules/User/routes/userRoutes.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+connectDB();
+
 const app = express();
+app.use(express.json());
 
-connectDB(); // Conexión a MongoDB
+app.use('/users', userRoutes); // 👈 rutas para usuarios
 
-app.use(json()); // Middleware para parsear JSON
+app.get('/', (_req, res) => res.send('🚀 API con Mongoose funcionando'));
 
-app.get('/', (req, res) => {
-  res.send('API funcionando 🎉');
-});
+app.listen(3000, () => console.log('🌐 Servidor corriendo en http://localhost:3000'));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
-
-import userRoutes from './routes/userRoutes';
-app.use('/api', userRoutes);
+console.log('🌱 URI desde .env:', process.env.MONGODB_URI);

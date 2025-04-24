@@ -1,0 +1,15 @@
+Username
+
+carloscalderon00110001
+
+Password
+
+WqvVKpenmb58VvKi
+
+---
+
+mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+
+
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/nombre-de-tu-db?retryWrites=true&w=majority
+
