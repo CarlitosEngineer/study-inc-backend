@@ -1,7 +1,7 @@
 import os
 
 # 📌 Configuración: Define la ruta del proyecto dinámicamente
-PROYECTO_BASE = os.path.expanduser("~/Documents/Airachnid")  # Ajusta automáticamente la ruta en cualquier equipo
+PROYECTO_BASE = os.path.expanduser("~/Documents/study-inc-backend")  # Ajusta automáticamente la ruta en cualquier equipo
 IGNORAR_CARPETAS = {"node_modules", ".git", "temp", "doc"}  # Carpetas que no se deben escanear
 
 # Definir la ruta relativa para el archivo de salida

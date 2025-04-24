@@ -1,5 +1,5 @@
 import express, { json } from 'express';
-import connectDB from './config/db';
+import connectDB from './config/db.js';
 const app = express();
 
 connectDB(); // Conexión a MongoDB

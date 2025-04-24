@@ -1,16 +1,16 @@
 {
   "name": "study-inc-backend",
   "version": "1.0.0",
-  "description": "Este es un **proyecto backend** para el diseño de un **MVP** de una **API REST**. Permite gestionar la plataforma de estudio en ingles, basado en un sistemas de cartas **FlashCards**.",
+  "type": "module",
   "main": "index.js",
+  "description": "Este es un **proyecto backend** para el diseño de un **MVP** de una **API REST**. Permite gestionar la plataforma de estudio en ingles, basado en un sistemas de cartas **FlashCards**.",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lint view": "eslint .",
-    "lint + fix": "npx eslint . --fix",
+    "lint . fix": "npx eslint . --fix",
     "format": "prettier --write .",
     "debug": "node --inspect-brk index.js"
-    
   },
   "keywords": [],
   "author": "",
