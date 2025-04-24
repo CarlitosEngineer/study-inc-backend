@@ -12,21 +12,10 @@ Registro de lenguages
 | `language_name` | Texto   | Nombre del idioma (ej. "English", "Español"). |
 | `language_code_2` | Texto (2) | Código ISO 639-1 (ej. "en", "es"). |
 | `language_code_3` | Texto (3) | Código ISO 639-2/3 (ej. "eng", "spa"). |
-| `direction_id` | Entero (FK) | Referencia a `text_directions.id`. |
+| `direction_id` | Texto (3) | Writing & read directions (`"LTR"`, `"RTL"`) |
 | `is_active` | Booleano | Define si el idioma está activo en el sistema. |
 | `created_at` | Timestamp | Fecha de creación del registro. |
 | `updated_at` | Timestamp | Fecha de la última actualización. |
-
-### **Tabla `writing_directions` (Sentido de escritura)**
-en que direccion leer los lenguages
-
-| Campo      | Tipo        | Descripción |
-|-----------|------------|-----------------------------------------|
-| `id`      | Entero (PK) | Identificador único de la dirección de escritura. |
-| `name`    | Texto       | Nombre (`"Left to Right"`, `"Right to Left"`). |
-| `code`    | Texto (3)   | Código (`"LTR"`, `"RTL"`). |
-| `created_at` | Timestamp | Fecha de creación. |
-| `updated_at` | Timestamp | Fecha de actualización. |
 
 ### **Tabla `genders` (Géneros binarios)**
 Registro de generos universal
@@ -36,18 +25,6 @@ Registro de generos universal
 | `id`                | Entero (PK) | Identificador único del género (`1` = Masculino, `0` = Femenino, `NULL` = No especificado). |
 | `slug`              | Texto (ÚNICO) | Nombre en formato de URL (`masculino`, `femenino`, `no-especificado`). |
 | `char_representation` | Texto (1)  | Representación en un solo carácter (`M`, `F`, `N`). |
-
-### **Tabla `gender_translations` (Traducciones de género)**
-Registro de generos por lenguages
-
-| Campo        | Tipo        | Descripción |
-|-------------|------------|------------------------------------------------|
-| `id`        | Entero (PK) | Identificador único de la traducción. |
-| `gender_id` | Entero (FK) | Referencia a `genders.id` (`0`, `1`, o `NULL`). |
-| `language_id` | Entero (FK) | Referencia a `languages.id`. |
-| `name`      | Texto       | Traducción del género en un idioma específico. |
-| `created_at` | Timestamp | Fecha de creación. |
-| `updated_at` | Timestamp | Fecha de actualización. |
 
 ### **Tabla `countries` (Países)**
 Almacena información sobre los países según los estándares ISO 3166-1.

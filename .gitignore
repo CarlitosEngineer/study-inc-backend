@@ -1,4 +1,6 @@
-/node_modules
-/temp
-/project_structure.
-.env
+# Folders
+node_modules/
+temp/
+
+# Specific Files
+project_structure.txt
