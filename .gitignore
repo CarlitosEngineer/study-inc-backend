@@ -4,3 +4,4 @@ temp/
 
 # Specific Files
 project_structure.txt
+.env
