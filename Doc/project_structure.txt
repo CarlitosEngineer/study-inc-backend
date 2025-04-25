@@ -2,11 +2,8 @@
 │   ├── .env
 │   ├── .gitignore
 │   ├── bun.lock
-│   ├── eslint.config.mjs
 │   ├── index.js
-│   ├── LICENSE
-│   ├── nodemon.json
-│   ├── package-lock.json
+│   ├── jsconfig.json
 │   ├── package.json
 │   ├── README.md
 │   ├── [config]
@@ -21,9 +18,10 @@
 │   │   ├── scan_project.py
 │   ├── [src]
 │   │   ├── [modules]
-│   │   │   ├── [global]
+│   │   │   ├── [Global]
+│   │   │   │   ├── [Countries]
+│   │   │   │   │   ├── Countries-Controllers.js
+│   │   │   │   │   ├── Countries-Models.js
+│   │   │   │   │   ├── Countries-Views.js
+│   │   │   │   ├── [Language]
 │   │   │   ├── [User]
-│   │   │   │   ├── [models]
-│   │   │   │   │   ├── User.js
-│   │   │   │   ├── [routes]
-│   │   │   │   │   ├── userRoutes.js
