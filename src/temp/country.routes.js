@@ -1,6 +1,6 @@
 // src/modules/User/routes/userRoutes.js
 import express from 'express';
-import User from './Countries-Models.js';
+import User from './country.model.js';
 
 const router = express.Router();
 
