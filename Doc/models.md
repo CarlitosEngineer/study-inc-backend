@@ -37,8 +37,6 @@ Almacena información sobre los países según los estándares ISO 3166-1.
 | `iso3166_3`  | Texto (3)  | Código ISO 3166-1 alfa-3. |
 | `num_code`   | Entero (3) | Código numérico de 3 dígitos del país. |
 | `phone_code` | Entero (1-4) | Código de marcación internacional. |
-| `currency_code` | Texto (3) | Código de moneda (`USD`, `EUR`, `MXN`). |
-| `region`     | Texto       | Región geográfica o continente. |
 | `created_at` | Timestamp | Fecha de creación del registro. |
 | `updated_at` | Timestamp | Fecha de la última actualización. |
 
